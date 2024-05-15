@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Metronic Vue Demo" />
+    <link rel="icon" href="/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"
+    />
+    <link rel="stylesheet" href="/splash-screen.css" />
+    <link rel="stylesheet" href="" id="main-css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Metronic - The World's #1 Selling Vue & Bootstrap Admin Template by
+      KeenThemes
+    </title>
+  </head>
+
+  <body class="page-loading">
+    <!--begin::Theme mode setup on page load-->
+    <script>
+      let themeMode = "system";
+
+      if (localStorage.getItem("kt_theme_mode_value")) {
+        themeMode = localStorage.getItem("kt_theme_mode_value");
+      }
+
+      if (themeMode === "system") {
+        themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+
+      const lang = localStorage.getItem("lang");
+
+      const setRtlMode = () => {
+        var link = document.getElementById("main-css");
+        link?.setAttribute("href", "/src/assets/rtl/style.rtl.css");
+        document.documentElement.setAttribute("dir", "rtl");
+        document.documentElement.setAttribute("direction", "rtl");
+        document.documentElement.setAttribute("style", "direction:rtl");
+      };
+
+      const setLtrMode = () => {
+        var link = document.getElementById("main-css");
+        document.documentElement.removeAttribute("dir");
+        document.documentElement.removeAttribute("direction");
+        document.documentElement.removeAttribute("style");
+        link?.setAttribute("href", "/src/assets/sass/style.scss");
+      };
+
+      if (lang === "ar") {
+        setRtlMode();
+      } else {
+        setLtrMode();
+      }
+
+      document.documentElement.setAttribute("data-bs-theme", themeMode);
+    </script>
+    <!--end::Theme mode setup on page load-->
+
+    <div id="app"></div>
+
+    <!--begin::Loading markup-->
+    <div id="splash-screen" class="splash-screen">
+      <img
+        src="/media/logos/default-dark.svg"
+        class="dark-logo"
+        alt="Metronic dark logo"
+      />
+      <img
+        src="/media/logos/default.svg"
+        class="light-logo"
+        alt="Metronic light logo"
+      />
+      <span>Loading ...</span>
+    </div>
+    <!--end::Loading markup-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJcG4JGvYdcEMAzDkqTq-WUwEgCwiYTK4&libraries=geometry"></script>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
